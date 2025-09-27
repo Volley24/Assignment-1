@@ -4,8 +4,12 @@
  * @author Sasisekhar Govind
  *
  */
-
+#define KERNEL_MODE 0
+#define USER_MODE 1
 #include<interrupts.hpp>
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, char** argv) {
 
@@ -20,16 +24,19 @@ int main(int argc, char** argv) {
 
     /******************ADD YOUR VARIABLES HERE*************************/
 
-
+    bool mode = USER_MODE;
 
     /******************************************************************/
 
     //parse each line of the input trace file
     while(std::getline(input_file, trace)) {
         auto [activity, duration_intr] = parse_trace(trace);
+        // CPU, 50
+        cout << "Activity: " << activity << " Duration: " << duration_intr << endl;
 
         /******************ADD YOUR SIMULATION CODE HERE*************************/
 
+        //if (activity == "CPU")
 
 
         /************************************************************************/

@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build and Run Interrupts",
+			"type": "shell",
+			"command": "wsl",
+			"args": [
+				"bash",
+				"-c",
+				"chmod +x build.sh && dos2unix build.sh 2>/dev/null || true && ./build.sh && ./bin/interrupts trace.txt vector_table.txt device_table.txt"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": ["$gcc"],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		}
+	]
+}
