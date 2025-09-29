@@ -1,0 +1,11 @@
+0, 1, do some CPU shit for 50
+0, 1, switch to kernel mode
+1, 2, context saved
+3, 1, find vector 7 in memory position 0x000E
+4, 1, load address 0X00BD into the PC
+5, 1, do some CPU shit for 100
+5, 1, switch to kernel mode
+6, 2, context saved
+8, 1, find vector 12 in memory position 0x0018
+9, 1, load address 0X03B9 into the PC
+10, 1, do some CPU shit for 20

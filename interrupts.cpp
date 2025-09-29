@@ -25,18 +25,30 @@ int main(int argc, char** argv) {
     /******************ADD YOUR VARIABLES HERE*************************/
 
     bool mode = USER_MODE;
+	int current_time = 0;
 
     /******************************************************************/
 
     //parse each line of the input trace file
     while(std::getline(input_file, trace)) {
-        auto [activity, duration_intr] = parse_trace(trace);
-        // CPU, 50
+        auto [activity, duration_intr] = parse_trace(trace); // CPU, 50 or SYSCALL, 7
+        
         cout << "Activity: " << activity << " Duration: " << duration_intr << endl;
 
         /******************ADD YOUR SIMULATION CODE HERE*************************/
 
-        //if (activity == "CPU")
+        if (activity == "CPU") {
+            // 
+            execution += std::to_string(current_time) + ", " + std::to_string(1) + ", do some CPU shit for " + std::to_string(duration_intr) + "\n";
+
+		}else if (activity == "SYSCALL") {
+			auto [exec_output, new_time] = intr_boilerplate(current_time, duration_intr, 2, vectors);
+			
+			current_time = new_time;
+			execution += exec_output;
+		}else if (activity == "END_IO") {
+			
+		}
 
 
         /************************************************************************/
