@@ -4,12 +4,12 @@
  * @author Sasisekhar Govind
  *
  */
-#define KERNEL_MODE 0
-#define USER_MODE 1
 #include<interrupts.hpp>
 #include <iostream>
 
 using namespace std;
+
+std::pair<std::string, int> print_line (string output, int time, int current_time);
 
 int main(int argc, char** argv) {
 
@@ -24,30 +24,40 @@ int main(int argc, char** argv) {
 
     /******************ADD YOUR VARIABLES HERE*************************/
 
-    bool mode = USER_MODE;
 	int current_time = 0;
 
     /******************************************************************/
 
+	auto print = [&](string output, int duration) {
+		auto [output_str, new_time] = print_line(output, duration, current_time);
+		execution += output_str;
+		current_time = new_time;
+	};
+
     //parse each line of the input trace file
     while(std::getline(input_file, trace)) {
         auto [activity, duration_intr] = parse_trace(trace); // CPU, 50 or SYSCALL, 7
-        
-        cout << "Activity: " << activity << " Duration: " << duration_intr << endl;
 
+		cout << "Activity: " << activity << "  Duration/Device ID: " << duration_intr << endl;
+        
         /******************ADD YOUR SIMULATION CODE HERE*************************/
 
         if (activity == "CPU") {
-            // 
-            execution += std::to_string(current_time) + ", " + std::to_string(1) + ", do some CPU shit for " + std::to_string(duration_intr) + "\n";
+			print("### Do CPU stuff for " + std::to_string(duration_intr), duration_intr);
 
 		}else if (activity == "SYSCALL") {
 			auto [exec_output, new_time] = intr_boilerplate(current_time, duration_intr, 2, vectors);
 			
 			current_time = new_time;
 			execution += exec_output;
+
+			print("do some device stuff", delays.at(duration_intr)); // 			delays[duration_intr]
+
+			print("Switch to user mode", 1);
+			print("IERT", 1);
+
 		}else if (activity == "END_IO") {
-			
+			print("end of I/O " + std::to_string(duration_intr) + ": interrupt" , 1);
 		}
 
 
@@ -60,4 +70,12 @@ int main(int argc, char** argv) {
     write_output(execution);
 
     return 0;
+}
+
+std::pair<std::string, int> print_line (string output, int time, int current_time) {
+	std::string execution = "";
+	execution += std::to_string(current_time) + ", " + std::to_string(time) + ", " + output + "\n";
+	current_time += time;
+
+	return make_pair(execution, current_time);
 }
