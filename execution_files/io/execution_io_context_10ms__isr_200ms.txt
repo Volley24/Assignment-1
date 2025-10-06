@@ -1,0 +1,56 @@
+0, 50, CPU burst
+50, 1, switch to kernel mode
+51, 10, context saved
+61, 1, find vector 17 in memory position 0x0022
+62, 1, load address 0X05B3 into the PC
+63, 200, ISR work
+263, 235, call device driver
+498, 1, Switch to user mode
+499, 1, IERT
+500, 1, End of I/O 17: interrupt
+501, 1, switch to kernel mode
+502, 10, context saved
+512, 1, find vector 10 in memory position 0x0014
+513, 1, load address 0X07B0 into the PC
+514, 200, ISR work
+714, 564, call device driver
+1278, 1, Switch to user mode
+1279, 1, IERT
+1280, 1, End of I/O 10: interrupt
+1281, 1, switch to kernel mode
+1282, 10, context saved
+1292, 1, find vector 16 in memory position 0x0020
+1293, 1, load address 0X02DF into the PC
+1294, 200, ISR work
+1494, 956, call device driver
+2450, 1, Switch to user mode
+2451, 1, IERT
+2452, 1, End of I/O 16: interrupt
+2453, 50, CPU burst
+2503, 1, switch to kernel mode
+2504, 10, context saved
+2514, 1, find vector 17 in memory position 0x0022
+2515, 1, load address 0X05B3 into the PC
+2516, 200, ISR work
+2716, 235, call device driver
+2951, 1, Switch to user mode
+2952, 1, IERT
+2953, 1, End of I/O 17: interrupt
+2954, 1, switch to kernel mode
+2955, 10, context saved
+2965, 1, find vector 10 in memory position 0x0014
+2966, 1, load address 0X07B0 into the PC
+2967, 200, ISR work
+3167, 564, call device driver
+3731, 1, Switch to user mode
+3732, 1, IERT
+3733, 1, End of I/O 10: interrupt
+3734, 1, switch to kernel mode
+3735, 10, context saved
+3745, 1, find vector 19 in memory position 0x0026
+3746, 1, load address 0X0765 into the PC
+3747, 200, ISR work
+3947, 652, call device driver
+4599, 1, Switch to user mode
+4600, 1, IERT
+4601, 1, End of I/O 19: interrupt

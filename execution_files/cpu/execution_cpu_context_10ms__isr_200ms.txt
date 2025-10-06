@@ -1,0 +1,25 @@
+0, 300, CPU burst
+300, 50, CPU burst
+350, 250, CPU burst
+600, 1, switch to kernel mode
+601, 10, context saved
+611, 1, find vector 25 in memory position 0x0032
+612, 1, load address 0X05D3 into the PC
+613, 200, CPU System Call ISR
+813, 1, Switch to user mode
+814, 1, IERT
+815, 1, End of I/O 25: interrupt
+816, 250, CPU burst
+1066, 275, CPU burst
+1341, 1, switch to kernel mode
+1342, 10, context saved
+1352, 1, find vector 6 in memory position 0x000C
+1353, 1, load address 0X0639 into the PC
+1354, 200, ISR work
+1554, 265, call device driver
+1819, 1, Switch to user mode
+1820, 1, IERT
+1821, 1, End of I/O 6: interrupt
+1822, 50, CPU burst
+1872, 250, CPU burst
+2122, 140, CPU burst

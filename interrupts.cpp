@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     /******************ADD YOUR VARIABLES HERE*************************/
 
     int save_context_time = 10; // Varied from 10, 20, 30ms
-    int isr_activity_time = 40; // Varied from 40 - 200ms
+    int isr_activity_time = 200; // Varied from 40 - 200ms
 
 	int current_time = 0; // Global timestamp of the program execution
 
@@ -38,8 +38,6 @@ int main(int argc, char** argv) {
     //parse each line of the input trace file
     while(std::getline(input_file, trace)) {
         auto [activity, duration_intr] = parse_trace(trace); // CPU, 50 or SYSCALL, 7
-
-		cout << "Activity: " << activity << "  Duration/Device ID: " << duration_intr << endl;
         
         /******************ADD YOUR SIMULATION CODE HERE*************************/
 
@@ -58,13 +56,14 @@ int main(int argc, char** argv) {
                 current_time = new_time;  //increment current time
                 execution += exec_output; //this is like our print function except intr_boilerplate does it for us.
 
-                print("ISR work", isr_activity_time);
 
-                // if there is no delay time associated with a 
-                //device number (extra thing to check)
-                //to check another condition!
+                // If there is no delay time associated with a device number
+                // then the system call is not from an I/O device, but from the CPU.
                 if (duration_intr < delays.size()){
+                    print("ISR work", isr_activity_time);
                     print("call device driver", delays.at(duration_intr));
+                }else {
+                    print("CPU System Call ISR", isr_activity_time);
                 }
 
                 // Switch back to user mode after device finished executing then Interrupt Return 

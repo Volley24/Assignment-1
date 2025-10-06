@@ -1,0 +1,30 @@
+0, 200, CPU burst
+200, 1, switch to kernel mode
+201, 20, context saved
+221, 1, find vector 9 in memory position 0x0012
+222, 1, load address 0X036C into the PC
+223, 40, ISR work
+263, 156, call device driver
+419, 1, Switch to user mode
+420, 1, IERT
+421, 1, End of I/O 9: interrupt
+422, 1, switch to kernel mode
+423, 20, context saved
+443, 1, find vector 9 in memory position 0x0012
+444, 1, load address 0X036C into the PC
+445, 40, ISR work
+485, 156, call device driver
+641, 1, Switch to user mode
+642, 1, IERT
+643, 1, End of I/O 9: interrupt
+644, 200, CPU burst
+844, 1, switch to kernel mode
+845, 20, context saved
+865, 1, find vector 16 in memory position 0x0020
+866, 1, load address 0X02DF into the PC
+867, 40, ISR work
+907, 956, call device driver
+1863, 1, Switch to user mode
+1864, 1, IERT
+1865, 1, End of I/O 16: interrupt
+1866, 200, CPU burst
